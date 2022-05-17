@@ -24,7 +24,7 @@ pipeline {
         //             waitForQualityGate abortPipeline: true
         //         }
         //     }
-        }
+        // }
         stage('Build Docker Image') {
             steps {
                 sh "docker build -t devops_flask_app:${BUILD_NUMBER} -t devops_flask_app:latest ."
