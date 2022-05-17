@@ -13,18 +13,18 @@ pipeline {
                 sh 'docker rm -f devops_flask_app || true'
             }
         }
-        stage('Sonarqube analysis frontend') {
-            steps {
-                echo "connecting to sonar"
-                withSonarQubeEnv('SonarQube') {
-                    sh "${scannerHome}/bin/sonar-scanner -Dsonar.login=${SONARQUBE_TOKEN}"
-                }
-                echo "sonarqube logg code 200"
-                timeout(time: 1, unit: 'MINUTES') {
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-        }
+        // stage('Sonarqube analysis frontend') {
+        //     steps {
+        //         echo "connecting to sonar"
+        //         withSonarQubeEnv('SonarQube') {
+        //             sh "${scannerHome}/bin/sonar-scanner -Dsonar.login=${SONARQUBE_TOKEN}"
+        //         }
+        //         echo "sonarqube logg code 200"
+        //         timeout(time: 1, unit: 'MINUTES') {
+        //             waitForQualityGate abortPipeline: true
+        //         }
+        //     }
+        // }
         stage('Build Docker Image') {
             steps {
                 sh "docker build -t devops_flask_app:${BUILD_NUMBER} -t devops_flask_app:latest ."
@@ -39,7 +39,7 @@ pipeline {
             steps {
                 dir('tests/') {
                     sh 'pip3 install -r requirements.txt'
-                    sh 'pytests test_app.py'
+                    sh 'pytest test_app.py'
                 }
             }
         }
