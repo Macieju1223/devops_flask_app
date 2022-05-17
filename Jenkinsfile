@@ -38,8 +38,8 @@ pipeline {
         stage('Selenium tests') {
             steps {
                 dir('tests/') {
-                    sh 'pip install -r requirements.txt'
-                    sh 'python -m pytest test_app.py'
+                    sh "docker build . -t app_test"
+                    sh "docker run -d -p 0.0.0.0:6666:6666 --net=jenkins_net --name dev_app_tester"
                 }
             }
         }
@@ -50,6 +50,13 @@ pipeline {
                 sh 'docker tag devops_flask_app:latest murbaniaktkh/jenkins_test:latest'
                 sh "docker push murbaniaktkh/jenkins_test:${BUILD_NUMBER}"
                 sh 'docker push murbaniaktkh/jenkins_test:latest'
+            }
+        }
+        stage('Clear running apps') {
+            steps {
+                sh 'docker rm -f devops_flask_app || true'
+                sh 'docker rm -f debv_app_tester || true'
+                sh 'docker network rm jenkins_net'
             }
         }
     }
