@@ -44,9 +44,14 @@ def test_decrement():
 try:
     print("Test 1")
     test_increment()
-
+except:
+    print('error code: 404')
+try:
     print("Test 2")
     test_decrement()
+except:
+    print("error code: 404")
+
 
 finally:
     print("Tests finished")
