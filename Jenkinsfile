@@ -52,7 +52,7 @@ pipeline {
                 sh 'docker push murbaniaktkh/jenkins_test:latest'
             }
         }
-        stage('Clear running apps') {
+        stage('Clear running apps_2') {
             steps {
                 sh 'docker rm -f devops_flask_app || true'
                 sh 'docker rm -f debv_app_tester || true'
