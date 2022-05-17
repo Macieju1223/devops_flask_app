@@ -39,7 +39,7 @@ pipeline {
             steps {
                 dir('tests/') {
                     sh "docker build . -t app_test"
-                    sh "docker run -d -p 0.0.0.0:6666:6666 --net=jenkins_net --name dev_app_tester"
+                    sh "docker run -d -p 0.0.0.0:6666:6666 --net=jenkins_net --name dev_app_tester app_test"
                 }
             }
         }
