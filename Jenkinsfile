@@ -39,7 +39,7 @@ pipeline {
             steps {
                 dir('tests/') {
                     sh 'pip install -r requirements.txt'
-                    sh 'pytest test_app.py'
+                    sh 'python -m pytest test_app.py'
                 }
             }
         }
