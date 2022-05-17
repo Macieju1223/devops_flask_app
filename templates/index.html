@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+            .button {
+                background-color: #4CAF50;
+                height: 50px;
+                width: 50px;
+                border: none;
+                color: white;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 40px;
+            }
+            .button:hover {
+                cursor: pointer;
+            }
+            .text {
+                text-align: center;
+                font-size: 40px;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+        </style>
+        <script>
+            const increment = () =>{
+                let old_number = document.getElementById("counter").innerHTML
+                let new_number = parseInt(old_number) + 1
+                document.getElementById("counter").innerHTML = new_number
+            }
+            const decrement = () =>{
+                let old_number = document.getElementById("counter").innerHTML
+                let new_number = parseInt(old_number) - 1
+                document.getElementById("counter").innerHTML = new_number
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            <input type="button" class="button" value="&#43;" id="plus" onclick="increment()">
+            <span class="text" id="counter">0</span>
+            <input type="button" class="button" value="&#8722;" id="minus" onclick="decrement()">
+        </div>
+    </body>
+</html>
