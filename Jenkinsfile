@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         scannerHome = tool 'SonarQube'
-        SONARQUBE_TOKEN = credentials('SONARQUBE_TOKEN')
+        SONARQUBE_TOKEN = credentials('SONAR_TOKEN')
         DOCKER_HUB_PASSWORD = credentials('DOCKER_HUB_PASSWORD')
     }
 
@@ -30,7 +30,7 @@ pipeline {
         }
         stage('Run app') {
             steps {
-                sh "docker run -d -p 0.0.0.0:5555:5555 --net=environment_docker_network --name devops_flask_app -t devops_flask_app:${BUILD_NUMBER}"
+                sh "docker run -d -p 0.0.0.0:5555:5555 --net=jenkins_net --name devops_flask_app -t devops_flask_app:${BUILD_NUMBER}"
             }
         }
         stage('Selenium tests') {
@@ -43,11 +43,11 @@ pipeline {
         }
         stage('Upload Docker Image to Docker Hub') {
             steps {
-                sh "docker login -u devopstkhtechnology -p ${DOCKER_HUB_PASSWORD}"
-                sh "docker tag devops_flask_app:${BUILD_NUMBER} devopstkhtechnology/devops_flask_app:${BUILD_NUMBER}"
-                sh 'docker tag devops_flask_app:latest devopstkhtechnology/devops_flask_app:latest'
-                sh "docker push devopstkhtechnology/devops_flask_app:${BUILD_NUMBER}"
-                sh 'docker push devopstkhtechnology/devops_flask_app:latest'
+                sh "docker login -u murbaniaktkh -p ${DOCKER_HUB_PASSWORD}"
+                sh "docker tag devops_flask_app:${BUILD_NUMBER} murbaniaktkh/jenkins_test:${BUILD_NUMBER}"
+                sh 'docker tag devops_flask_app:latest murbaniaktkh/jenkins_test:latest'
+                sh "docker push murbaniaktkh/jenkins_test:${BUILD_NUMBER}"
+                sh 'docker push murbaniaktkh/jenkins_test:latest'
             }
         }
     }
