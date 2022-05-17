@@ -29,7 +29,7 @@ pipeline {
             steps {
                 sh "docker build -t devops_flask_app:${BUILD_NUMBER} -t devops_flask_app:latest ."
             }
-        }asdasdfsa
+        }
         stage('Run app') {
             steps {
                 sh "docker run -d -p 0.0.0.0:5555:5555 --net=jenkins_net --name devops_flask_app -t devops_flask_app:${BUILD_NUMBER}"
