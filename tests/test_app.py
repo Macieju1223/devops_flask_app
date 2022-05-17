@@ -47,6 +47,8 @@ try:
 
     print("Test 2")
     test_decrement()
+except:
+    print("error 404")
 
 finally:
     # finally:
