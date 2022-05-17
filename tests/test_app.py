@@ -41,19 +41,15 @@ def test_decrement():
 
     print("Test 2 passed")
 
-# try:
-#     print("Test 1")
-#     test_increment()
-# except:
-#     print('error code: 404')
-# try:
-#     print("Test 2")
-#     test_decrement()
-# except:
-#     print("error code: 404")
+try:
+    print("Test 1")
+    test_increment()
 
+    print("Test 2")
+    test_decrement()
 
-# finally:
-print("Tests finished")
+finally:
+    # finally:
+    print("Tests finished")
 
-driver.quit()
+    driver.quit()
