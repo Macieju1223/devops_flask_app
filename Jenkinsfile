@@ -56,7 +56,7 @@ pipeline {
             steps {
                 sh 'docker rm -f devops_flask_app || true'
                 sh 'docker rm -f debv_app_tester || true'
-                sh 'docker network rm jenkins_net'
+                sh 'docker network rm jenkins_net || true'
             }
         }
     }
