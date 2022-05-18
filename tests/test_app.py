@@ -52,7 +52,7 @@ try:
 except:
     print("error 404")
 
-finally:
-    print("Tests finished")
+# finally:
+print("Tests finished")
 
-    driver.quit()
+driver.quit()
