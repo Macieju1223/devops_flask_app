@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 print("Connecting to webdriver")
 
 driver = webdriver.Remote(
-    command_executor=('http://selenium-env:4444/wd/hub'),
+    command_executor=('http://selenium-env:4444'),
     options=webdriver.FirefoxOptions()
 )
 
@@ -52,7 +52,7 @@ try:
 except:
     print("error 404")
 
-# finally:
-print("Tests finished")
+finally:
+    print("Tests finished")
 
-driver.quit()
+    driver.quit()

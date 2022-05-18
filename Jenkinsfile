@@ -32,17 +32,17 @@ pipeline {
         }
         stage('Run app') {
             steps {
-                sh "docker run -d -p 0.0.0.0:5555:5555 --net=jenkins_net --name devops_flask_app -t devops_flask_app:${BUILD_NUMBER}"
+                sh "docker run -d -p 0.0.0.0:5555:5555 --net=devops_environment_docker_network --name devops_flask_app -t devops_flask_app:${BUILD_NUMBER}"
             }
         }
-        // stage('Selenium tests') {
-        //     steps {
-        //         dir('tests/') {
-        //             sh "pip3 install -r requirements.txt"
-        //             sh "python3 -m pytest test_app.py"
-        //         }
-        //     }
-        // }
+        stage('Selenium tests') {
+            steps {
+                dir('tests/') {
+                    sh "pip3 install -r requirements.txt"
+                    sh "python3 -m pytest test_app.py"
+                }
+            }
+        }
         stage('Upload Docker Image to Docker Hub') {
             steps {
                 sh "docker login -u murbaniaktkh -p ${DOCKER_HUB_PASSWORD}"
